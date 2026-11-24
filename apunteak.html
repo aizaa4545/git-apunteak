@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git - Apunteak</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #20252b;
+      --muted: #59636e;
+      --accent: #e85d3f;
+      --dark: #20252b;
+      --line: #dce1e6;
+      --code: #17212b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 42px 20px;
+      text-align: center;
+      border-bottom: 5px solid var(--accent);
+    }
+    header h1 { margin: 0 0 8px; font-size: 2.4rem; }
+    header p { margin: 0; color: #d8dee5; }
+    nav {
+      background: #303943;
+      padding: 12px 18px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 10px;
+      display: inline-block;
+      font-size: .95rem;
+    }
+    nav a:hover { color: #ffb19e; }
+    main { max-width: 1000px; margin: 28px auto; padding: 0 18px 40px; }
+    section {
+      background: var(--card);
+      margin: 18px 0;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #17212b0b;
+    }
+    h2 { margin-top: 0; color: #bd452e; }
+    h3 { margin-bottom: 6px; }
+    p { margin-top: 8px; }
+    .note {
+      background: #fff4ef;
+      border-left: 4px solid var(--accent);
+      padding: 12px 15px;
+      border-radius: 4px;
+      margin: 14px 0;
+    }
+    code {
+      background: #edf0f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: var(--code);
+      color: #f1f5f9;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 7px;
+      line-height: 1.5;
+    }
+    pre code { background: none; color: inherit; padding: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+    th, td { border: 1px solid var(--line); padding: 10px; text-align: left; }
+    th { background: #edf0f3; }
+    .steps { padding-left: 22px; }
+    footer { text-align: center; padding: 22px; color: var(--muted); }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.9rem; }
+      section { padding: 18px; }
+      nav { position: static; }
+      table { font-size: .9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Git - Apunteak</h1>
+    <p>Bertsio-kontrola ikasteko gida erraza</p>
+  </header>
+
+  <nav>
+    <a href="#zer-da">Zer da Git?</a>
+    <a href="#kontzeptuak">Kontzeptuak</a>
+    <a href="#komandoak">Komandoak</a>
+    <a href="#prozesua">Lan-prozesua</a>
+    <a href="#adarak">Adarrak</a>
+  </nav>
+
+  <main>
+    <section id="zer-da">
+      <h2>1. Zer da Git?</h2>
+      <p><strong>Git</strong> bertsio-kontrolerako sistema bat da. Programa edo proiektu baten fitxategietan egindako aldaketak gordetzeko eta haien historia ikusteko erabiltzen da.</p>
+      <p>Git erabiliz, aurreko bertsio batera itzul gaitezke, zer aldatu den ikus dezakegu eta hainbat pertsonak proiektu berean lan egin dezakete.</p>
+      <div class="note"><strong>Adibidea:</strong> HTML fitxategi batean aldaketa bat egiten baduzu, Git-ek aldaketa hori gordetzeko aukera ematen dizu. Gero, nahi baduzu, aurreko egoera berreskura dezakezu.</div>
+      <h3>Git eta GitHub ez dira gauza bera</h3>
+      <ul>
+        <li><strong>Git:</strong> zure ordenagailuan erabiltzen den bertsio-kontrolerako programa.</li>
+        <li><strong>GitHub:</strong> Git proiektuak Interneten gordetzeko eta besteekin partekatzeko web-plataforma.</li>
+      </ul>
+    </section>
+
+    <section id="kontzeptuak">
+      <h2>2. Oinarrizko kontzeptuak</h2>
+      <ul>
+        <li><strong>Repository (biltegia):</strong> Git-ek kontrolatzen duen proiektuaren karpeta.</li>
+        <li><strong>Commit:</strong> une jakin bateko aldaketen argazkia edo gordeketa. Mezu bat izaten du aldaketak azaltzeko.</li>
+        <li><strong>Working directory:</strong> lanean ari zaren fitxategien karpeta.</li>
+        <li><strong>Staging area:</strong> hurrengo commit-ean sartuko diren aldaketak prestatzeko eremua.</li>
+        <li><strong>Branch (adarra):</strong> proiektuaren lan-lerro independente bat. Ezaugarri berri bat probatzeko erabil daiteke.</li>
+        <li><strong>Remote:</strong> urruneko biltegia, adibidez GitHub-en dagoena.</li>
+      </ul>
+      <h3>Git-en hiru egoera nagusiak</h3>
+      <ol class="steps">
+        <li><strong>Working directory:</strong> fitxategiak aldatu dituzu.</li>
+        <li><strong>Staging area:</strong> <code>git add</code> erabiliz aldaketak aukeratu dituzu.</li>
+        <li><strong>Repository:</strong> <code>git commit</code> erabiliz aldaketak historian gorde dituzu.</li>
+      </ol>
+    </section>
+
+    <section id="komandoak">
+      <h2>3. Git komando garrantzitsuenak</h2>
+      <p>Komando hauek terminalean edo Visual Studio Code-ren terminalean idazten dira.</p>
+      <table>
+        <thead><tr><th>Komandoa</th><th>Zertarako balio du?</th></tr></thead>
+        <tbody>
+          <tr><td><code>git --version</code></td><td>Git instalatuta dagoen eta zein bertsio dagoen egiaztatzen du.</td></tr>
+          <tr><td><code>git init</code></td><td>Karpeta batean Git biltegi berria sortzen du.</td></tr>
+          <tr><td><code>git status</code></td><td>Fitxategien egoera eta egindako aldaketak erakusten ditu.</td></tr>
+          <tr><td><code>git add fitxategia.html</code></td><td>Fitxategi jakin bateko aldaketak staging area-ra gehitzen ditu.</td></tr>
+          <tr><td><code>git add .</code></td><td>Karpeta barruko aldaketa guztiak gehitzen ditu.</td></tr>
+          <tr><td><code>git commit -m "mezua"</code></td><td>Prest dauden aldaketak gordetzen ditu, azalpen-mezu batekin.</td></tr>
+          <tr><td><code>git log</code></td><td>Commit-en historia erakusten du.</td></tr>
+          <tr><td><code>git diff</code></td><td>Gorde gabeko aldaketen xehetasunak erakusten ditu.</td></tr>
+          <tr><td><code>git clone helbidea</code></td><td>Urruneko biltegi baten kopia ordenagailura deskargatzen du.</td></tr>
+          <tr><td><code>git pull</code></td><td>Urruneko biltegiko azken aldaketak ekartzen ditu.</td></tr>
+          <tr><td><code>git push</code></td><td>Zure commit-ak urruneko biltegira bidaltzen ditu.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="prozesua">
+      <h2>4. Ohiko lan-prozesua</h2>
+      <p>Proiektu batean aldaketak egin eta Git-en gordetzeko, normalean pauso hauek jarraitzen dira:</p>
+      <pre><code>git status
+git add .
+git status
+git commit -m "HTML orria gehitu"</code></pre>
+      <ol class="steps">
+        <li>Fitxategiak sortu edo aldatu.</li>
+        <li><code>git status</code> erabili zer aldatu den ikusteko.</li>
+        <li><code>git add .</code> erabili aldaketak prestatzeko.</li>
+        <li>Berriro <code>git status</code> erabili dena ondo dagoela egiaztatzeko.</li>
+        <li><code>git commit -m "..."</code> erabili aldaketak gordetzeko.</li>
+      </ol>
+      <div class="note"><strong>Gogoratu:</strong> <code>git add</code>-ek ez ditu aldaketak behin betiko gordetzen. Commit-a egiteko <code>git commit</code> ere erabili behar da.</div>
+    </section>
+
+    <section id="adarak">
+      <h2>5. Adarrak (branches)</h2>
+      <p>Adarrek proiektuaren kopia independente batean lan egitea ahalbidetzen dute. Horrela, ez dugu proiektu nagusia zuzenean aldatu behar.</p>
+      <pre><code>git branch
+git branch diseinu-berria
+git switch diseinu-berria
+git switch main</code></pre>
+      <ul>
+        <li><code>git branch</code>: dauden adarrak erakusten ditu.</li>
+        <li><code>git branch diseinu-berria</code>: adar berria sortzen du.</li>
+        <li><code>git switch diseinu-berria</code>: adar horretara aldatzen da.</li>
+        <li><code>git switch main</code>: main adarrera itzultzen da.</li>
+      </ul>
+      <h3>Merge: adarrak elkartzea</h3>
+      <p>Adar batean egindako lana beste adar batean sartzeko, adibidez <code>main</code>-en:</p>
+      <pre><code>git switch main
+git merge diseinu-berria</code></pre>
+      <p>Batzuetan <strong>merge conflict</strong> bat ager daiteke: bi adarretan lerro berak modu desberdinean aldatu direnean. Fitxategia eskuz zuzendu eta ondoren commit egin behar da.</p>
+    </section>
+
+    <section>
+      <h2>6. .gitignore fitxategia</h2>
+      <p><code>.gitignore</code> fitxategiak Git-ek jarraitu behar ez dituen fitxategiak edo karpetak adierazten ditu.</p>
+      <p>Adibidez, aldi baterako fitxategiak edo sortutako karpetak baztertzeko erabil daiteke:</p>
+      <pre><code>bin/
+obj/
+*.tmp
+.DS_Store</code></pre>
+    </section>
+
+    <section>
+      <h2>7. GitHub-ekin lan egitea</h2>
+      <p>GitHub-en biltegi bat sortu ondoren, zure ordenagailuko biltegia harekin konekta dezakezu:</p>
+      <pre><code>git remote add origin https://github.com/erabiltzailea/proiektua.git
+git branch -M main
+git push -u origin main</code></pre>
+      <p>Ohiko erabileran:</p>
+      <ul>
+        <li><code>git pull</code>: lehenik besteen azken aldaketak jaso.</li>
+        <li>Aldaketak egin eta commit-ak sortu.</li>
+        <li><code>git push</code>: zure aldaketak GitHub-era bidali.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Azkar gogoratzeko</h2>
+      <table>
+        <thead><tr><th>Helburua</th><th>Komandoa</th></tr></thead>
+        <tbody>
+          <tr><td>Biltegia sortu</td><td><code>git init</code></td></tr>
+          <tr><td>Egoera ikusi</td><td><code>git status</code></td></tr>
+          <tr><td>Aldaketak prestatu</td><td><code>git add .</code></td></tr>
+          <tr><td>Aldaketak gorde</td><td><code>git commit -m "..."</code></td></tr>
+          <tr><td>Historia ikusi</td><td><code>git log</code></td></tr>
+          <tr><td>GitHub-etik jaso</td><td><code>git pull</code></td></tr>
+          <tr><td>GitHub-era bidali</td><td><code>git push</code></td></tr>
+        </tbody>
+      </table>
+      <div class="note"><strong>Ikasteko trikimailua:</strong> <code>status</code> = egoera ikusi, <code>add</code> = prestatu, <code>commit</code> = gorde, <code>push</code> = bidali, <code>pull</code> = jaso.</div>
+    </section>
+  </main>
+  <footer>Git apunteak · Hasiberrientzat</footer>
+</body>
+</html>
