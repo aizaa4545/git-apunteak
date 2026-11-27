@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git - Branch eta Merge</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #1f2937;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 3px solid #f97316;
+        }
+
+        header h1 {
+            color: #f97316;
+            font-size: 35px;
+        }
+
+        nav {
+            background: #0f172a;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        nav a:hover {
+            color: #f97316;
+        }
+
+        main {
+            width: 85%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        section {
+            background: #1f2937;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #f97316;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin: 15px 0;
+            color: #38bdf8;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        pre {
+            background: #020617;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #4ade80;
+            margin: 15px 0;
+        }
+
+        code {
+            color: #4ade80;
+        }
+
+        .adibidea {
+            background: #374151;
+            padding: 15px;
+            border-left: 4px solid #f97316;
+            margin: 15px 0;
+        }
+
+        .adarra {
+            background: #374151;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .main-adarra {
+            color: #38bdf8;
+        }
+
+        .berri-adarra {
+            color: #4ade80;
+        }
+
+        button {
+            background: #f97316;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #ea580c;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #emaitza {
+            margin-top: 15px;
+            color: #4ade80;
+        }
+
+        footer {
+            background: #0f172a;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>GIT: BRANCH ETA MERGE</h1>
+        <p>Ikasi Git-en adarrekin lan egiten</p>
+    </header>
+
+    <nav>
+        <a href="#branch">Branch</a>
+        <a href="#merge">Merge</a>
+        <a href="#gatazkak">Gatazkak</a>
+        <a href="#ariketa">Ariketa</a>
+    </nav>
+
+    <main>
+
+        <section id="branch">
+            <h2>1. Zer da Branch?</h2>
+
+            <p>
+                Branch (adarra) proiektu baten barruan lan egiteko
+                bide independente bat da.
+            </p>
+
+            <p>
+                Adarrei esker, funtzio berriak gara ditzakegu
+                proiektuaren adar nagusia aldatu gabe.
+            </p>
+
+            <div class="adibidea">
+                <h3>Adibidea</h3>
+                <p><strong>main:</strong> Proiektuaren adar nagusia.</p>
+                <p><strong>diseinua:</strong> Diseinua aldatzeko adarra.</p>
+                <p><strong>login:</strong> Saioa hasteko funtzioa sortzeko adarra.</p>
+            </div>
+
+            <h3>Komando nagusiak</h3>
+
+            <pre>
+git branch
+git branch diseinua
+git switch diseinua
+git switch -c login
+git branch -d diseinua
+            </pre>
+
+            <p><code>git branch</code>: dauden adarrak erakusten ditu.</p>
+
+            <p><code>git branch diseinua</code>: adar berri bat sortzen du.</p>
+
+            <p><code>git switch diseinua</code>: beste adar batera aldatzen da.</p>
+
+            <p><code>git switch -c login</code>: adar bat sortu eta bertara aldatzen da.</p>
+
+            <p><code>git branch -d diseinua</code>: adar bat ezabatzen du.</p>
+        </section>
+
+        <section>
+            <h2>2. Nola funtzionatzen dute adarrek?</h2>
+
+            <p>
+                Imajinatu proiektu nagusi bat duzula eta
+                funtzio berri bat garatu nahi duzula.
+            </p>
+
+            <div class="adarra">
+                <strong class="main-adarra">MAIN</strong>
+                <p>● Commit 1 → ● Commit 2 → ● Commit 3</p>
+            </div>
+
+            <div class="adarra">
+                <strong class="berri-adarra">DISEINUA</strong>
+                <p>● Commit 1 → ● Commit 2 → ● Diseinu berria</p>
+            </div>
+
+            <p>
+                Adar bakoitzean modu independentean lan egin dezakezu,
+                aldaketak elkartu nahi dituzun arte.
+            </p>
+        </section>
+
+        <section id="merge">
+            <h2>3. Zer da Merge?</h2>
+
+            <p>
+                Merge-k batzea esan nahi du. Adar bateko aldaketak
+                beste adar batera gehitzeko erabiltzen da.
+            </p>
+
+            <h3>Adibide praktikoa</h3>
+
+            <p>
+                Diseinua adarrean lana amaitu duzu eta
+                aldaketa horiek main adarrera gehitu nahi dituzu.
+            </p>
+
+            <pre>
+git add .
+git commit -m "Diseinua amaituta"
+
+git switch main
+
+git merge diseinua
+            </pre>
+
+            <div class="adibidea">
+                <strong>GARRANTZITSUA:</strong>
+                Merge egin aurretik, aldaketak jasoko dituen
+                adarrean egon behar duzu.
+            </div>
+        </section>
+
+        <section id="gatazkak">
+            <h2>4. Merge gatazkak</h2>
+
+            <p>
+                Gatazka bat gertatzen da Git-ek ezin duenean
+                automatikoki erabaki zein aldaketa mantendu.
+            </p>
+
+            <h3>Adibidea</h3>
+
+            <div class="adarra">
+                <strong class="main-adarra">MAIN</strong>
+                <p>izena = "Kaixo"</p>
+            </div>
+
+            <div class="adarra">
+                <strong class="berri-adarra">DISEINUA</strong>
+                <p>izena = "Agur"</p>
+            </div>
+
+            <p>
+                Bi adarrek lerro bera aldatu dute.
+                Fitxategia ireki eta zein bertsio mantendu
+                erabaki behar duzu.
+            </p>
+        </section>
+
+        <section>
+            <h2>5. Branch eta Merge arteko desberdintasunak</h2>
+
+            <div class="adibidea">
+                <h3>BRANCH</h3>
+                <p>Lan egiteko adar independenteak sortzen ditu.</p>
+            </div>
+
+            <div class="adibidea">
+                <h3>MERGE</h3>
+                <p>Adar desberdinetako aldaketak batzen ditu.</p>
+            </div>
+        </section>
+
+        <section id="ariketa">
+            <h2>6. Ikasitakoa frogatu</h2>
+
+            <p>
+                Zein komando erabiltzen da diseinua izeneko
+                adarra batzeko?
+            </p>
+
+            <select id="erantzuna">
+                <option value="">Aukeratu erantzun bat</option>
+                <option value="1">git branch diseinua</option>
+                <option value="2">git merge diseinua</option>
+                <option value="3">git switch diseinua</option>
+            </select>
+
+            <br><br>
+
+            <button onclick="zuzendu()">Egiaztatu</button>
+
+            <p id="emaitza"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Git ikasten | Branch eta Merge</p>
+        <p>Bertsio-kontrolari buruzko oinarrizko gida</p>
+    </footer>
+
+    <script>
+        function zuzendu() {
+
+            let erantzuna = document.getElementById("erantzuna").value;
+            let emaitza = document.getElementById("emaitza");
+
+            if (erantzuna == "2") {
+                emaitza.textContent = "Zuzena! git merge komandoak adarrak batzen ditu.";
+            }
+            else if (erantzuna == "") {
+                emaitza.textContent = "Aukeratu erantzun bat.";
+            }
+            else {
+                emaitza.textContent = "Okerra! Saiatu berriro.";
+            }
+        }
+    </script>
+
+</body>
+</html>
